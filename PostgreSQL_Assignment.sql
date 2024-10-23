@@ -52,11 +52,13 @@ SELECT * FROM enrollment;
 
 -- Query 1:
 -- Insert a new student record with the following details:
+-- Purpose: Insert means post a new student to students table
 INSERT INTO students (student_id, student_name, age, email, frontend_mark, backend_mark, status) VALUES
 (7, 'Gandib', 24, 'gandib@gmail.com',59, 60, NULL);
 
 -- Query 2:
 -- Retrieve the names of all students who are enrolled in the course titled 'Next.js'.
+-- Purpose: Displaying the names who are enrolled Next.js
 SELECT student_name from enrollment e 
 JOIN students s ON s.student_id = e.student_id 
 JOIN courses c ON e.course_id = c.course_id 
@@ -64,6 +66,7 @@ WHERE c.course_id = 1;
 
 -- Query 3:
 -- Update the status of the student with the highest total (frontend_mark + backend_mark) to 'Awarded'.
+-- Purpose: Updating specific student's status whose marks (frontend_mark + backend_mark) is highest
 UPDATE students SET status = 'Awarded' 
 WHERE student_id = (SELECT student_id 
 FROM students 
@@ -73,6 +76,7 @@ desc LIMIT 1);
 
 -- Query 4:
 -- Delete all courses that have no students enrolled.
+-- Purpose: Deleting rest of courses which are not enrolled
 DELETE FROM courses 
 WHERE courses.course_id 
 NOT IN (SELECT course_id 
